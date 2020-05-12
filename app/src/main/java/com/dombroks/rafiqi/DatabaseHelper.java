@@ -108,12 +108,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String result = "";
         SQLiteOpenHelper dbHelper;
         SQLiteDatabase db = this.getWritableDatabase();
-        int Suraindex = 1;
+        int SuraIndex = 1;
+
         Cursor c = db.rawQuery("select text from quran_text where sura ='1'", null);
 
         while (c.moveToNext()) {
-            result +=  c.getString(0) +  "﴿"+Suraindex+"﴾" ;
-            Suraindex++;
+            String AyaEnd = "﴿" + SuraIndex + "﴾";
+            result += c.getString(0) + AyaEnd;
+            SuraIndex++;
         }
         c.close();
         db.close();
