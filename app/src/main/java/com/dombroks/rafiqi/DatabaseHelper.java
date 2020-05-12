@@ -110,7 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         int SuraIndex = 1;
 
-        Cursor c = db.rawQuery("select text from quran_text where sura ='1'", null);
+        Cursor c = db.rawQuery("select text from quran_text where sura ='5'", null);
 
         while (c.moveToNext()) {
             String AyaEnd = "﴿" + SuraIndex + "﴾";
@@ -122,4 +122,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
 
     }
+
 }

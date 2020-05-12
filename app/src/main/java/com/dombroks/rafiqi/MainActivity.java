@@ -1,6 +1,8 @@
 package com.dombroks.rafiqi;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.room.Room;
 
 import android.database.Cursor;
@@ -25,13 +27,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDBHelper = new DatabaseHelper(this, null, null, 5);
-
+       /* mDBHelper = new DatabaseHelper(this, null, null, 5);
         suraTextView = findViewById(R.id.sura);
-        suraTextView.setText(mDBHelper.laodQuery().toString());
-
-
-
+        String Sura = mDBHelper.laodQuery();
+        suraTextView.setText(Sura);
+        */
 
     }
 
