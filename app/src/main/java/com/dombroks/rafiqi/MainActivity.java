@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       /* mDBHelper = new DatabaseHelper(this, null, null, 5);
-        suraTextView = findViewById(R.id.sura);
+        mDBHelper = new DatabaseHelper(this, null, null, 5);
+
         String Sura = mDBHelper.laodQuery();
-        suraTextView.setText(Sura);
-        */
+        Toast.makeText(this, Sura, Toast.LENGTH_LONG).show();
+
 
     }
 

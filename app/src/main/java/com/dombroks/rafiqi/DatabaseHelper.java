@@ -14,7 +14,7 @@ import java.io.OutputStream;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DB_VERSION = 5;
-    private static String DB_NAME = "data.db";
+    private static String DB_NAME = "quran.db";
     private static String DB_PATH;
     private final Context mContext;
     private SQLiteDatabase mDataBase;
@@ -110,7 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         int SuraIndex = 1;
 
-        Cursor c = db.rawQuery("select text from quran_text where sura ='5'", null);
+        Cursor c = db.rawQuery("select content from chapters where id=1 ;", null);
 
         while (c.moveToNext()) {
             String AyaEnd = "﴿" + SuraIndex + "﴾";
