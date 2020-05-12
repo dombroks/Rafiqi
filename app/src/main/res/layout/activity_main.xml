@@ -27,7 +27,7 @@
                 android:fontFamily="@font/oswald_medium"
                 android:text="RAFIQI"
                 android:textColor="#ffffff"
-                android:textSize="26sp" />
+                android:textSize="25sp" />
 
             <ImageView
                 android:layout_width="22dp"
@@ -68,15 +68,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="30dp">
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/place"
+                android:layout_gravity="center"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Algeria, Algiers"
                 android:textColor="#ffffff"
                 android:textSize="15sp"
+                android:layout_marginLeft="3dp"
                 android:fontFamily="@font/oswald_medium"
-                android:layout_marginLeft="30dp"/>
+                />
 
         </LinearLayout>
 
@@ -85,8 +92,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:listitem="@layout/rv_item"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:scrollbars="horizontal"/>
 </LinearLayout>
 
