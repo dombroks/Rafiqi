@@ -9,11 +9,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="230dp"
         android:background="@drawable/custom_app_bar_shape"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center">
+        android:gravity="center|top">
 
 
         <TextView
@@ -21,21 +21,53 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/oswald_medium"
             android:text="RAFIQI"
-            android:layout_marginBottom="20dp"
             android:textColor="#ffffff"
             android:textSize="28sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Asr"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:fontFamily="@font/oswald_medium"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17:39"
+            android:fontFamily="@font/oswald_light"
+            android:textColor="#ffffff"
+            android:textSize="50sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-00:15:23"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:fontFamily="@font/oswald_light"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Algeria, Algeries"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:fontFamily="@font/oswald_medium"
+                android:layout_marginLeft="30dp"/>
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:background="@drawable/religious" />
     </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/rv_item"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:scrollbars="horizontal"/>
 </LinearLayout>
 
