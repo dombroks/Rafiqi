@@ -108,9 +108,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String result = "";
         SQLiteOpenHelper dbHelper;
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select * from quran_text", null);
+        int Suraindex = 1;
+        Cursor c = db.rawQuery("select text from quran_text where sura ='1'", null);
+
         while (c.moveToNext()) {
-            result = c.getString(3);
+            result +=  c.getString(0) +  "﴿"+Suraindex+"﴾" ;
+            Suraindex++;
         }
         c.close();
         db.close();
