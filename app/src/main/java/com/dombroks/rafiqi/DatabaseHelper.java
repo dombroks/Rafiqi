@@ -113,8 +113,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("select content from chapters where id=1 ;", null);
 
         while (c.moveToNext()) {
-            String AyaEnd = "﴿" + SuraIndex + "﴾";
-            result += c.getString(0) + AyaEnd;
+
+            result += c.getString(0);
             SuraIndex++;
         }
         c.close();

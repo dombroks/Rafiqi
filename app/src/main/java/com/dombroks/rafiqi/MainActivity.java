@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DatabaseHelper mDBHelper;
     private SQLiteDatabase mDb;
-    private TextView suraTextView;
+
 
 
     @Override
