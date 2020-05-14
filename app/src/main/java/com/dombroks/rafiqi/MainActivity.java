@@ -38,24 +38,14 @@ public class MainActivity extends AppCompatActivity {
         TextView = findViewById(R.id.datahi);
 
         Times = getPrayerTimes("Algeria", "Algiers");
-
-
-    }
-
-    public String getYear() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy");
-        String year = simpleDateFormat.format(new Date());
-        return year;
-    }
-
-    public String getMonth() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM");
-        String month = simpleDateFormat.format(new Date());
-        return month;
+      //  TextView.setText();
 
     }
 
-    public void getTime() {
+    public String getTime() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+        String time = simpleDateFormat.format(new Date());
+        return time;
 
     }
 
@@ -63,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         final String END_POINT = "http://api.aladhan.com/v1/timingsByCity?" +
                 "city=" + city + "&country=" + country;
+
         final PrayerTimes prayerTimes = new PrayerTimes();
 
 
@@ -86,19 +77,25 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                List<String> timings = extractDataFromJson(response);
+                final List<String> timings = extractDataFromJson(response);
+                //Assign work to new thread to dispatch the work
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        prayerTimes.setFajr(timings.get(0));
+                        prayerTimes.setSunrise(timings.get(1));
+                        prayerTimes.setDhuhr(timings.get(2));
+                        prayerTimes.setAsr(timings.get(3));
+                        prayerTimes.setSunset(timings.get(4));
+                        prayerTimes.setMaghrib(timings.get(5));
+                        prayerTimes.setIsha(timings.get(6));
+                        prayerTimes.setImsak(timings.get(7));
+                        prayerTimes.setMidnight(timings.get(8));
 
-                prayerTimes.setFajr(timings.get(0));
-                prayerTimes.setSunrise(timings.get(1));
-                prayerTimes.setDhuhr(timings.get(2));
-                prayerTimes.setAsr(timings.get(3));
-                prayerTimes.setSunset(timings.get(4));
-                prayerTimes.setMaghrib(timings.get(5));
-                prayerTimes.setIsha(timings.get(6));
-                prayerTimes.setImsak(timings.get(7));
-                prayerTimes.setMidnight(timings.get(8));
+                    }
+                }).start();
 
-                TextView.setText(prayerTimes.getMaghrib());
+
             }
 
         });
@@ -129,10 +126,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         return prayertimes;
 
     }
+    public void getWhichPrayerTime(){
+        String time = getTime();
+        char[] timeArray=time.toCharArray();
+        if(timeArray[0]==0){
+        }
+
+    }
+
 }
 
 
