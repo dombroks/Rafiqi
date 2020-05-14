@@ -1,7 +1,5 @@
 package com.dombroks.rafiqi;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.net.wifi.ScanResult;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private TextView TextView;
-    private PrayerTimes prayerTimes;
+    private PrayerTimes Times;
 
 
     @Override
@@ -39,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         TextView = findViewById(R.id.datahi);
 
-        //prayerTimes = getPrayerTimes("algeria", "setif", 05, 2020);
-        TextView.setText(getMonth());
+        Times = getPrayerTimes("Algeria", "Algiers");
+
 
     }
 
@@ -61,10 +59,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public PrayerTimes getPrayerTimes(String country, String city, int month, int year) {
-        final String END_POINT = "http://api.aladhan.com/v1/calendarByCity?" +
-                "city=" + city + "&country=" + country + "&month=" + month + "&year=" + year;
+    public PrayerTimes getPrayerTimes(String country, String city) {
+
+        final String END_POINT = "http://api.aladhan.com/v1/timingsByCity?" +
+                "city=" + city + "&country=" + country;
         final PrayerTimes prayerTimes = new PrayerTimes();
+
 
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 List<String> timings = extractDataFromJson(response);
+
                 prayerTimes.setFajr(timings.get(0));
                 prayerTimes.setSunrise(timings.get(1));
                 prayerTimes.setDhuhr(timings.get(2));
@@ -97,9 +98,11 @@ public class MainActivity extends AppCompatActivity {
                 prayerTimes.setImsak(timings.get(7));
                 prayerTimes.setMidnight(timings.get(8));
 
+                TextView.setText(prayerTimes.getMaghrib());
             }
 
         });
+
         return prayerTimes;
 
     }
@@ -113,10 +116,10 @@ public class MainActivity extends AppCompatActivity {
             data = response.body().string();
             JSONObject object = new JSONObject(data);
             for (int i = 0; i < prayers.length; i++) {
-                Prayer = object.getJSONArray("data")
-                        .getJSONObject(0)
+                Prayer = object.getJSONObject("data")
                         .getJSONObject("timings")
                         .getString(prayers[i]);
+
                 prayertimes.add(Prayer);
             }
 
@@ -124,6 +127,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+
+
+
         return prayertimes;
 
     }
