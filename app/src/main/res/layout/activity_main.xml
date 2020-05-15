@@ -48,7 +48,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/oswald_medium"
-            android:text="Asr"
             android:textColor="#ffffff"
             android:textSize="24sp" />
 
@@ -74,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:fontFamily="@font/oswald_light"
-                android:text="17:39"
+
                 android:textColor="#ffffff"
                 android:textSize="50sp"
                 app:layout_constraintEnd_toEndOf="parent"
