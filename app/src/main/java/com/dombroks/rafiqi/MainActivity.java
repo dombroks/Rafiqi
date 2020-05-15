@@ -1,9 +1,11 @@
 package com.dombroks.rafiqi;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dombroks.rafiqi.Model.PrayerTimes;
@@ -14,6 +16,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView TextView;
     private PrayerTimes Times;
 
+    private TextView salat;
+    private TextView salatTime;
+    private TextView remainingTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +44,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         TextView = findViewById(R.id.datahi);
 
+        salat = findViewById(R.id.prayerName);
+        salatTime = findViewById(R.id.adhanTime);
+        remainingTime = findViewById(R.id.remainingTime);
+
         Times = getPrayerTimes("Algeria", "Algiers");
-      //  TextView.setText();
+
 
     }
 
@@ -80,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 final List<String> timings = extractDataFromJson(response);
                 //Assign work to new thread to dispatch the work
                 new Thread(new Runnable() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void run() {
                         prayerTimes.setFajr(timings.get(0));
@@ -91,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         prayerTimes.setIsha(timings.get(6));
                         prayerTimes.setImsak(timings.get(7));
                         prayerTimes.setMidnight(timings.get(8));
+
 
                     }
                 }).start();
@@ -129,13 +142,7 @@ public class MainActivity extends AppCompatActivity {
         return prayertimes;
 
     }
-    public void getWhichPrayerTime(){
-        String time = getTime();
-        char[] timeArray=time.toCharArray();
-        if(timeArray[0]==0){
-        }
 
-    }
 
 }
 
