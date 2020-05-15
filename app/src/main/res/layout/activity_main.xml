@@ -63,7 +63,8 @@
                 android:src="@drawable/left"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/adhanTime"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:clickable="true"/>
 
             <TextView
                 android:id="@+id/adhanTime"
@@ -88,7 +89,8 @@
                 android:src="@drawable/right"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/adhanTime"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:clickable="true"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -98,7 +100,7 @@
             android:fontFamily="@font/oswald_light"
             android:text="-00:15:23"
             android:textColor="#ffffff"
-            android:textSize="20sp" />
+            android:textSize="21sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -118,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:fontFamily="@font/oswald_medium"
-                android:text="Algeria, Algiers"
+                android:text="Algiers, Algeria"
                 android:textColor="#ffffff"
                 android:textSize="15sp" />
 
