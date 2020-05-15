@@ -2,6 +2,9 @@ package com.dombroks.rafiqi;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView salat;
     private TextView salatTime;
     private TextView remainingTime;
+    private ImageView nextSalat;
+    private ImageView previousSalat;
+    private String currentSalat;
 
 
     @Override
@@ -47,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         salat = findViewById(R.id.prayerName);
         salatTime = findViewById(R.id.adhanTime);
         remainingTime = findViewById(R.id.remainingTime);
+        nextSalat = findViewById(R.id.switchToRight);
+        previousSalat = findViewById(R.id.switchToLeft);
 
         Times = getPrayerTimes("Algeria", "Algiers");
 
@@ -91,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 final List<String> timings = extractDataFromJson(response);
                 //Assign work to new thread to dispatch the work
                 new Thread(new Runnable() {
-                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void run() {
                         prayerTimes.setFajr(timings.get(0));
@@ -103,8 +110,14 @@ public class MainActivity extends AppCompatActivity {
                         prayerTimes.setIsha(timings.get(6));
                         prayerTimes.setImsak(timings.get(7));
                         prayerTimes.setMidnight(timings.get(8));
-
-
+                        currentSalat = prayerTimes.getDhuhr();
+                        nextSalat.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                salatTime.setText(nextSalat(currentSalat, prayerTimes));
+                                currentSalat = nextSalat(currentSalat, prayerTimes);
+                            }
+                        });
                     }
                 }).start();
 
@@ -140,6 +153,24 @@ public class MainActivity extends AppCompatActivity {
 
 
         return prayertimes;
+
+    }
+
+    public String nextSalat(String currentSalat, PrayerTimes times) {
+        String next = "";
+        if (currentSalat == times.getAsr()) {
+            next = times.getMaghrib();
+        } else if (currentSalat == times.getMaghrib()) {
+            next = times.getIsha();
+        } else if (currentSalat == times.getIsha()) {
+            next = times.getFajr();
+        } else if (currentSalat == times.getFajr()) {
+            next = times.getDhuhr();
+        } else if (currentSalat == times.getDhuhr()) {
+            next = times.getAsr();
+        }
+
+        return next;
 
     }
 
