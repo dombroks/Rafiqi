@@ -1,14 +1,11 @@
 package com.dombroks.rafiqi;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dombroks.rafiqi.Model.PrayerTimes;
@@ -19,7 +16,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -41,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView remainingTime;
     private ImageView nextSalat;
     private ImageView previousSalat;
-    private String currentSalat;
+    private String currentSalatTime;
+    private String currentSalatName;
 
 
     @Override
@@ -69,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public PrayerTimes getPrayerTimes(String country, String city) {
+
+        final int[] i = {0, 1, 2, 3, 4};
+        final String[] prayers = {"Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"};
 
         final String END_POINT = "http://api.aladhan.com/v1/timingsByCity?" +
                 "city=" + city + "&country=" + country;
@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        //set data.
                         prayerTimes.setFajr(timings.get(0));
                         prayerTimes.setSunrise(timings.get(1));
                         prayerTimes.setDhuhr(timings.get(2));
@@ -110,12 +111,34 @@ public class MainActivity extends AppCompatActivity {
                         prayerTimes.setIsha(timings.get(6));
                         prayerTimes.setImsak(timings.get(7));
                         prayerTimes.setMidnight(timings.get(8));
-                        currentSalat = prayerTimes.getDhuhr();
+
+                        //fix current salat.
+                        currentSalatTime = prayerTimes.getFajr();
+                        currentSalatName = prayers[i[0]];
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                salat.setText(currentSalatName);
+                                salatTime.setText(prayerTimes.getFajr());
+                            }
+                        });
+
                         nextSalat.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                salatTime.setText(nextSalat(currentSalat, prayerTimes));
-                                currentSalat = nextSalat(currentSalat, prayerTimes);
+
+                                salatTime.setText(nextSalatTime(currentSalatTime, prayerTimes));
+                                currentSalatTime = nextSalatTime(currentSalatTime, prayerTimes);
+                                /*
+                                if (currentSalatName == prayers[4]) {
+                                    currentSalatName = prayers[0];
+                                }
+                                currentSalatName = prayers[i[0] += 1];
+                                */
+                                salat.setText(nextSalatName(currentSalatName));
+                                currentSalatName = nextSalatName(currentSalatName);
+
+
                             }
                         });
                     }
@@ -156,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public String nextSalat(String currentSalat, PrayerTimes times) {
+    public String nextSalatTime(String currentSalat, PrayerTimes times) {
         String next = "";
         if (currentSalat == times.getAsr()) {
             next = times.getMaghrib();
@@ -174,7 +197,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public final String nextSalatName(String currentSalatName) {
+        String nextName = "";
 
+        switch (currentSalatName) {
+            case "Fajr":
+                nextName = "Dhuhr";
+                break;
+            case "Dhuhr":
+                nextName = "Asr";
+                break;
+            case "Asr":
+                nextName = "Maghrib";
+                break;
+            case "Maghrib":
+                nextName = "Isha";
+                break;
+            case "Isha":
+                nextName = "Fajr";
+                break;
+        }
+
+        return nextName;
+    }
 }
 
 
