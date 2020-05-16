@@ -129,16 +129,19 @@ public class MainActivity extends AppCompatActivity {
 
                                 salatTime.setText(nextSalatTime(currentSalatTime, prayerTimes));
                                 currentSalatTime = nextSalatTime(currentSalatTime, prayerTimes);
-                                /*
-                                if (currentSalatName == prayers[4]) {
-                                    currentSalatName = prayers[0];
-                                }
-                                currentSalatName = prayers[i[0] += 1];
-                                */
                                 salat.setText(nextSalatName(currentSalatName));
                                 currentSalatName = nextSalatName(currentSalatName);
 
 
+                            }
+                        });
+                        previousSalat.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                salatTime.setText(previousSalatTime(currentSalatTime, prayerTimes));
+                                currentSalatTime = previousSalatTime(currentSalatTime, prayerTimes);
+                                salat.setText(previousSalatName(currentSalatName));
+                                currentSalatName = previousSalatName(currentSalatName);
                             }
                         });
                     }
@@ -220,6 +223,50 @@ public class MainActivity extends AppCompatActivity {
 
         return nextName;
     }
+
+    public final String previousSalatName(String currentSalatName) {
+        String previousName = "";
+
+        switch (currentSalatName) {
+            case "Fajr":
+                previousName = "Isha";
+                break;
+            case "Dhuhr":
+                previousName = "Fajr";
+                break;
+            case "Asr":
+                previousName = "Dhuhr";
+                break;
+            case "Maghrib":
+                previousName = "Asr";
+                break;
+            case "Isha":
+                previousName = "Maghrib";
+                break;
+        }
+
+        return previousName;
+    }
+
+    public String previousSalatTime(String currentSalat, PrayerTimes times) {
+        String previous = "";
+        if (currentSalat == times.getAsr()) {
+            previous = times.getDhuhr();
+        } else if (currentSalat == times.getMaghrib()) {
+            previous = times.getAsr();
+        } else if (currentSalat == times.getIsha()) {
+            previous = times.getMaghrib();
+        } else if (currentSalat == times.getFajr()) {
+            previous = times.getIsha();
+        } else if (currentSalat == times.getDhuhr()) {
+            previous = times.getFajr();
+        }
+
+        return previous;
+
+    }
+
+
 }
 
 
