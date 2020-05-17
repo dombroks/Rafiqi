@@ -1,5 +1,7 @@
 package com.dombroks.rafiqi;
 
+import android.content.Intent;
+import android.location.LocationListener;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private TextView TextView;
-    private PrayerTimes Times;
+    public PrayerTimes Times;
 
     private TextView salat;
     private TextView salatTime;
@@ -40,20 +42,26 @@ public class MainActivity extends AppCompatActivity {
     private ImageView previousSalat;
     private String currentSalatTime;
     private String currentSalatName;
+    private TextView place;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView = findViewById(R.id.datahi);
 
+        Intent intent = getIntent();
+
+        TextView = findViewById(R.id.datahi);
+        place = findViewById(R.id.place);
         salat = findViewById(R.id.prayerName);
         salatTime = findViewById(R.id.adhanTime);
         remainingTime = findViewById(R.id.remainingTime);
         nextSalat = findViewById(R.id.switchToRight);
         previousSalat = findViewById(R.id.switchToLeft);
 
+        place.setText(intent.getStringExtra("city") + ", " + intent.getStringExtra("wilaya") + ", " +
+                intent.getStringExtra("country"));
         Times = getPrayerTimes("Algeria", "Algiers");
 
 
@@ -314,7 +322,7 @@ public class MainActivity extends AppCompatActivity {
             if (hours < -6) {
                 hours = +12;
             } else if (hours > -6) {
-                hours = +20;
+                hours = +24;
                 // Put some test on this point.
             }
         }
@@ -332,6 +340,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         finish();
+
     }
 }
 
