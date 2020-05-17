@@ -287,12 +287,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         remaining = current.getTime() - now.getTime();
-/*
-        if (remaining<0){
-            remaining=remaining* -1 ;
-            remaining+=720 ;
-        }
-*/
+
         long inMin = (remaining / 1000) / 60;
         return String.valueOf(("-" + convert_to_hours_minutes(inMin)));
     }
