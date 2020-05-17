@@ -1,6 +1,5 @@
 package com.dombroks.rafiqi;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -60,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public String getTime() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+    public String getLocalTime() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
         String time = simpleDateFormat.format(new Date());
         return time;
 
@@ -123,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 salat.setText(currentSalatName);
                                 salatTime.setText(prayerTimes.getFajr());
-                                remainingTime.setText(getRemainingTime(currentSalatTime, getTime()));
+                                remainingTime.setText(getRemainingTime(currentSalatTime, getLocalTime()));
                             }
                         });
 
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                                 currentSalatTime = nextSalatTime(currentSalatTime, prayerTimes);
                                 salat.setText(nextSalatName(currentSalatName));
                                 currentSalatName = nextSalatName(currentSalatName);
-                                remainingTime.setText(getRemainingTime(currentSalatTime, getTime()));
+                                remainingTime.setText(getRemainingTime(currentSalatTime, getLocalTime()));
 
 
                             }
@@ -147,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                                 currentSalatTime = previousSalatTime(currentSalatTime, prayerTimes);
                                 salat.setText(previousSalatName(currentSalatName));
                                 currentSalatName = previousSalatName(currentSalatName);
-                                remainingTime.setText(getRemainingTime(currentSalatTime, getTime()));
+                                remainingTime.setText(getRemainingTime(currentSalatTime, getLocalTime()));
                             }
                         });
                     }
@@ -282,16 +281,18 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             current = format.parse(currentSalatTime);
-
             now = format.parse(currentTime);
-
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-
         remaining = current.getTime() - now.getTime();
-        //return String.valueOf(remaining);
+/*
+        if (remaining<0){
+            remaining=remaining* -1 ;
+            remaining+=720 ;
+        }
+*/
         long inMin = (remaining / 1000) / 60;
         return String.valueOf(("-" + convert_to_hours_minutes(inMin)));
     }
@@ -299,13 +300,29 @@ public class MainActivity extends AppCompatActivity {
     public String convert_to_hours_minutes(long t) {
         String H = "";
         String M = "";
+        long hours = 0;
+        long minutes = 0;
 
-        long hours = t / 60;
-        long minutes = t % 60;
+        hours += t / 60;
+        minutes = t % 60;
+
+        if (minutes < 0) {
+            minutes += 60;
+        }
+
         if (minutes < 10) {
             M = "0" + minutes;
         } else
             M = String.valueOf(minutes);
+
+        if (hours < 0) {
+            if (hours < -6) {
+                hours = +12;
+            } else if (hours > -6) {
+                hours = +20;
+                // Put some test on this point.
+            }
+        }
         if (hours < 10) {
             H = "0" + hours;
         } else
