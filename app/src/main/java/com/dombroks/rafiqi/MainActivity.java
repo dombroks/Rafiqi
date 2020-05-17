@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -115,11 +116,13 @@ public class MainActivity extends AppCompatActivity {
                         //fix current salat.
                         currentSalatTime = prayerTimes.getFajr();
                         currentSalatName = prayers[i[0]];
+
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 salat.setText(currentSalatName);
                                 salatTime.setText(prayerTimes.getFajr());
+                                remainingTime.setText(getRemainingTime(currentSalatTime, getTime()));
                             }
                         });
 
@@ -131,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                                 currentSalatTime = nextSalatTime(currentSalatTime, prayerTimes);
                                 salat.setText(nextSalatName(currentSalatName));
                                 currentSalatName = nextSalatName(currentSalatName);
+                                remainingTime.setText(getRemainingTime(currentSalatTime, getTime()));
 
 
                             }
@@ -142,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
                                 currentSalatTime = previousSalatTime(currentSalatTime, prayerTimes);
                                 salat.setText(previousSalatName(currentSalatName));
                                 currentSalatName = previousSalatName(currentSalatName);
+                                remainingTime.setText(getRemainingTime(currentSalatTime, getTime()));
                             }
                         });
                     }
@@ -263,6 +268,49 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return previous;
+
+    }
+
+    public String getRemainingTime(String currentSalatTime, String currentTime) {
+        long remaining = 0;
+        currentSalatTime.replace(":", "");
+        currentTime.replace(":", "");
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        Date now = null;
+        Date current = null;
+
+        try {
+            current = format.parse(currentSalatTime);
+
+            now = format.parse(currentTime);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        remaining = current.getTime() - now.getTime();
+        //return String.valueOf(remaining);
+        long inMin = (remaining / 1000) / 60;
+        return String.valueOf(("-" + convert_to_hours_minutes(inMin)));
+    }
+
+    public String convert_to_hours_minutes(long t) {
+        String H = "";
+        String M = "";
+
+        long hours = t / 60;
+        long minutes = t % 60;
+        if (minutes < 10) {
+            M = "0" + minutes;
+        } else
+            M = String.valueOf(minutes);
+        if (hours < 10) {
+            H = "0" + hours;
+        } else
+            H = "" + hours;
+
+        return String.valueOf(H + ":" + M);
 
     }
 
