@@ -37,7 +37,6 @@ import static java.util.Locale.getDefault;
 public class SplashScreen extends AppCompatActivity {
     private Double latitude = 0.0;
     private Double longitude = 0.0;
-    private static String TAG = "SplashScreen";
     private int PERMISSION_ID = 44;
     FusedLocationProviderClient mFusedLocationClient;
 
@@ -111,6 +110,7 @@ public class SplashScreen extends AppCompatActivity {
                                     String cityName = addresses.get(0).getLocality();
                                     String wilayaName = addresses.get(0).getAdminArea();
                                     String country = addresses.get(0).getCountryName();
+
                                     wilayaName = wilayaName.replace("Province", "");
 
                                     Intent intent = new Intent(SplashScreen.this, MainActivity.class)
@@ -118,9 +118,6 @@ public class SplashScreen extends AppCompatActivity {
                                             .putExtra("wilaya", wilayaName)
                                             .putExtra("country", country);
 
-                                    Log.e(TAG, "onComplete: " + wilayaName);
-                                    Log.e(TAG, "onComplete: " + cityName);
-                                    Log.e(TAG, "onComplete: " + country);
                                     startActivity(intent);
 
                                 }
