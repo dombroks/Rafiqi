@@ -336,13 +336,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Don't forget to uncomment this later "onResume"
+
+/*
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-
+    public void onResume() {
+        super.onResume();
+        Intent intent=getIntent();
+        Times=getPrayerTimes(intent.getStringExtra("city"),intent.getStringExtra("country"));
     }
+
+ */
 }
 
 

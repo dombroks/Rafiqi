@@ -134,7 +134,7 @@ public class SplashScreen extends AppCompatActivity {
         }
     }
 
-
+    //When location==null, means that location is deactivated in the user phone.
     @SuppressLint("MissingPermission")
     private void requestNewLocationData() {
 
@@ -156,7 +156,28 @@ public class SplashScreen extends AppCompatActivity {
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
-            //some work here
+
+            Geocoder geocoder = new Geocoder(SplashScreen.this, Locale.forLanguageTag("Eng"));
+            List<Address> addressList = null;
+            try {
+                addressList = geocoder.getFromLocation(longitude, latitude, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String cityName = addressList.get(0).getLocality();
+            String wilayaName = addressList.get(0).getAdminArea();
+            String country = addressList.get(0).getCountryName();
+
+            wilayaName = wilayaName.replace("Province", "");
+
+            Intent intent = new Intent(SplashScreen.this, MainActivity.class)
+                    .putExtra("city", cityName)
+                    .putExtra("wilaya", wilayaName)
+                    .putExtra("country", country);
+
+            startActivity(intent);
+
+
         }
     };
 
