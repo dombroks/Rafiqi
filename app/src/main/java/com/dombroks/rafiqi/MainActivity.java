@@ -3,6 +3,7 @@ package com.dombroks.rafiqi;
 import android.content.Intent;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Intent intent = getIntent();
 
         TextView = findViewById(R.id.datahi);
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         remainingTime = findViewById(R.id.remainingTime);
         nextSalat = findViewById(R.id.switchToRight);
         previousSalat = findViewById(R.id.switchToLeft);
+
+        setLoadingDialog();
 
         place.setText(intent.getStringExtra("city") + ", " + intent.getStringExtra("wilaya") + ", " +
                 intent.getStringExtra("country"));
@@ -333,6 +337,19 @@ public class MainActivity extends AppCompatActivity {
             H = "" + hours;
 
         return String.valueOf(H + "H " + M + " M");
+
+    }
+
+    public void setLoadingDialog() {
+        final LoadingDialog loadingDialog = new LoadingDialog(MainActivity.this);
+        loadingDialog.startLoadingDialog();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingDialog.dismiss();
+            }
+        }, 5000);
 
     }
 
