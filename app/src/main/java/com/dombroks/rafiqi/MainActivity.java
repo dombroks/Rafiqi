@@ -298,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
         remaining = current.getTime() - now.getTime();
 
         long inMin = (remaining / 1000) / 60;
-        return String.valueOf(("-" + convert_to_hours_minutes(inMin)));
+        return String.valueOf((convert_to_hours_minutes(inMin)));
     }
 
     public String convert_to_hours_minutes(long t) {
@@ -332,7 +332,7 @@ public class MainActivity extends AppCompatActivity {
         } else
             H = "" + hours;
 
-        return String.valueOf(H + ":" + M);
+        return String.valueOf(H + "H " + M + " M");
 
     }
 
