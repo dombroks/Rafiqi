@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         place.setText(intent.getStringExtra("city") + ", " + intent.getStringExtra("wilaya") + ", " +
                 intent.getStringExtra("country"));
+
         Times = getPrayerTimes("Algeria", "Algiers");
 
 
@@ -305,6 +306,10 @@ public class MainActivity extends AppCompatActivity {
         String M = "";
         long hours = 0;
         long minutes = 0;
+        boolean SalatPassed = false;
+        if (t < 0) {
+            SalatPassed = true;
+        }
 
         hours += t / 60;
         minutes = t % 60;
@@ -318,13 +323,9 @@ public class MainActivity extends AppCompatActivity {
         } else
             M = String.valueOf(minutes);
 
-        if (hours < 0) {
-            if (hours < -6) {
-                hours = +12;
-            } else if (hours > -6) {
-                hours = +24;
-                // Put some test on this point.
-            }
+        if (SalatPassed) {
+            hours = hours * (-1) + 1;
+            hours = 24 - hours;
         }
         if (hours < 10) {
             H = "0" + hours;
