@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private String currentSalatTime;
     private String currentSalatName;
     private TextView place;
+    private String city, country, willaya;
 
 
     @Override
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
+        city = intent.getStringExtra("city");
+        willaya = intent.getStringExtra("wilaya");
+        country = intent.getStringExtra("country");
 
 
         place = findViewById(R.id.place);
@@ -64,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         setLoadingDialog();
 
-        place.setText(intent.getStringExtra("city") + ", " + intent.getStringExtra("wilaya") + ", " +
-                intent.getStringExtra("country"));
+        place.setText(city + ", " + willaya + ", " + country);
 
         Times = getPrayerTimes("Algeria", "Algiers");
 
