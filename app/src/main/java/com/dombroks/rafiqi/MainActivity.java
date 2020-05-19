@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView nextSalat, previousSalat;
     private String currentSalatTime, currentSalatName;
     private String city, country, willaya;
-    private ImageView qubla, sallat, quran, dua, assmaa, calendar, tassbih;
+    private ImageView qubla, sallat, quran, dua, assmaa, calendar, tassbih, chahadaa;
 
 
     @Override
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         city = intent.getStringExtra("city");
         willaya = intent.getStringExtra("wilaya");
         country = intent.getStringExtra("country");
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         sallat = findViewById(R.id.salat);
         calendar = findViewById(R.id.calendar);
         dua = findViewById(R.id.dua);
+        chahadaa = findViewById(R.id.shahada);
 
         //To set the dialog only when moving from splash screen to here
         if (intent.getStringExtra("city") != null) {
@@ -83,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 otherActivity = new Intent(MainActivity.this, tassbih.class);
+                startActivity(otherActivity);
+            }
+        });
+        chahadaa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                otherActivity = new Intent(MainActivity.this, chahada.class);
                 startActivity(otherActivity);
             }
         });
