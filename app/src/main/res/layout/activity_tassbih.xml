@@ -28,14 +28,15 @@
             android:clickable="true" />
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-
-            android:layout_marginStart="9dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginStart="122dp"
+            android:layout_marginBottom="11dp"
             android:layout_toEndOf="@+id/left"
-            android:fontFamily="@font/oswald_bold"
+            android:fontFamily="@font/oswald_regular"
+            android:gravity="center|center_horizontal"
             android:text="Tassbih"
             android:textColor="@color/white"
             android:textSize="25sp" />
