@@ -5,7 +5,9 @@ import android.location.LocationListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +35,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
 
-    private TextView TextView;
     public PrayerTimes Times;
-
     private TextView salat;
     private TextView salatTime;
     private TextView remainingTime;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        TextView = findViewById(R.id.datahi);
+
         place = findViewById(R.id.place);
         salat = findViewById(R.id.prayerName);
         salatTime = findViewById(R.id.adhanTime);
@@ -352,6 +352,7 @@ public class MainActivity extends AppCompatActivity {
         }, 5000);
 
     }
+
 
     //Don't forget to uncomment this later "onResume"
 
