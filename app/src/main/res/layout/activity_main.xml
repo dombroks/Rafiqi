@@ -216,8 +216,18 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/custom_shape2"
                 android:clickable="true"
-                android:padding="10dp"
+                android:padding="12dp"
                 android:src="@drawable/calendar" />
+
+            <ImageView
+                android:id="@+id/shahada"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/custom_shape2"
+                android:clickable="true"
+                android:padding="5dp"
+                android:src="@drawable/sahada" />
 
             <ImageView
                 android:id="@+id/asmaa"
