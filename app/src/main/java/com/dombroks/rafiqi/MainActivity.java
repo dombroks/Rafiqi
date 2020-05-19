@@ -70,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
         calendar = findViewById(R.id.calendar);
         dua = findViewById(R.id.dua);
 
-        setLoadingDialog();
+        //To set the dialog only when moving from splash screen to here
+        if (intent.getStringExtra("city") != null) {
+            setLoadingDialog();
+        }
 
         place.setText(city + ", " + willaya + ", " + country);
 
