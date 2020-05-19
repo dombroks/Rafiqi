@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/oswald_light"
-            android:text="-00:15:23"
+            android:text=""
             android:textColor="#ffffff"
             android:textSize="21sp" />
 
