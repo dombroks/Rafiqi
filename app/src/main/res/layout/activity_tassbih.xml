@@ -10,7 +10,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/custom_app_bar_shape"
+        android:background="@color/colorPrimary"
         android:elevation="2dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-16dp"
@@ -24,7 +24,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="21dp"
             android:layout_marginBottom="21dp"
-            android:background="@drawable/left" />
+            android:background="@drawable/left"
+            android:clickable="true" />
 
         <TextView
             android:layout_width="wrap_content"
