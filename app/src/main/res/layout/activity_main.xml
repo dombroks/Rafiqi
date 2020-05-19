@@ -151,64 +151,101 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/custom_shape2" />
+                android:background="@drawable/custom_shape2"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/religious" />
 
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/custom_shape2" />
+                android:background="@drawable/custom_shape2"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/sallat" />
 
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/custom_shape2" />
+                android:background="@drawable/custom_shape2"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/qublaa" />
 
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/custom_shape2" />
+                android:background="@drawable/custom_shape2"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/dua" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:clickable="true"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginTop="100dp">
+            android:orientation="horizontal">
 
 
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/custom_shape2" />
+                android:background="@drawable/custom_shape2"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/tasbih" />
 
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/custom_shape2" />
+                android:background="@drawable/custom_shape2"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/calendar" />
 
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/custom_shape2" />
+                android:background="@drawable/custom_shape2"
+                android:clickable="true"
+                android:padding="2dp"
+                android:src="@drawable/asmaa" />
 
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/custom_shape2" />
+                android:background="@drawable/custom_shape2"
+                android:clickable="true"
+                android:padding="10dp" />
 
         </LinearLayout>
 
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@drawable/custom_bottom">
+
+        </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
