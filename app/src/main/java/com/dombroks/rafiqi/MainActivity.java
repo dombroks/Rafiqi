@@ -36,15 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     public PrayerTimes Times;
-    private TextView salat;
-    private TextView salatTime;
-    private TextView remainingTime;
-    private ImageView nextSalat;
-    private ImageView previousSalat;
-    private String currentSalatTime;
-    private String currentSalatName;
-    private TextView place;
+    private Intent otherActivity;
+    private TextView salat, salatTime, remainingTime, place;
+    private ImageView nextSalat, previousSalat;
+    private String currentSalatTime, currentSalatName;
     private String city, country, willaya;
+    private ImageView qubla, sallat, quran, dua, assmaa, calendar, tassbih;
 
 
     @Override
@@ -65,12 +62,29 @@ public class MainActivity extends AppCompatActivity {
         remainingTime = findViewById(R.id.remainingTime);
         nextSalat = findViewById(R.id.switchToRight);
         previousSalat = findViewById(R.id.switchToLeft);
+        qubla = findViewById(R.id.qubla);
+        quran = findViewById(R.id.quran);
+        tassbih = findViewById(R.id.tassbih);
+        assmaa = findViewById(R.id.asmaa);
+        sallat = findViewById(R.id.salat);
+        calendar = findViewById(R.id.calendar);
+        dua = findViewById(R.id.dua);
 
         setLoadingDialog();
 
         place.setText(city + ", " + willaya + ", " + country);
 
         Times = getPrayerTimes("Algeria", "Algiers");
+
+        tassbih.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                otherActivity = new Intent(MainActivity.this, tassbih.class);
+                startActivity(otherActivity);
+            }
+        });
+
+
 
 
     }
