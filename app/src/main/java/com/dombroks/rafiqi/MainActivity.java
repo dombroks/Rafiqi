@@ -1,6 +1,8 @@
 package com.dombroks.rafiqi;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.LocationListener;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.sql.Savepoint;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private String currentSalatTime, currentSalatName;
     private String city, country, willaya;
     private ImageView qubla, sallat, quran, dua, assmaa, calendar, tassbih, chahadaa;
+    private boolean isFirst = true;
 
 
     @Override
@@ -54,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
         city = intent.getStringExtra("city");
         willaya = intent.getStringExtra("wilaya");
         country = intent.getStringExtra("country");
+
+        if (city != null && willaya != null && country != null) {
+            storeData(city, country, willaya);
+        }
 
 
         place = findViewById(R.id.place);
@@ -71,14 +79,10 @@ public class MainActivity extends AppCompatActivity {
         dua = findViewById(R.id.dua);
         chahadaa = findViewById(R.id.shahada);
 
-        //To set the dialog only when moving from splash screen to here
-        if (intent.getStringExtra("city") != null) {
-            setLoadingDialog();
-        }
 
-        place.setText(city + ", " + willaya + ", " + country);
+        place.setText(getData("city") + ", " + getData("willaya") + ", " + getData("country"));
 
-        Times = getPrayerTimes("Algeria", "Algiers");
+        Times = getPrayerTimes("Algeria", "setif");
 
         tassbih.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,8 +98,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(otherActivity);
             }
         });
-
-
 
 
     }
@@ -326,8 +328,10 @@ public class MainActivity extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        remaining = current.getTime() - now.getTime();
+        if (String.valueOf(current.getTime()) != null && String.valueOf(now.getTime()) != null) {
+            remaining = current.getTime() - now.getTime();
+        } else
+            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
 
         long inMin = (remaining / 1000) / 60;
         return String.valueOf((convert_to_hours_minutes(inMin)));
@@ -381,19 +385,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void storeData(String City, String Country, String Willay) {
+        SharedPreferences sharedPreferences = getSharedPreferences("mFile", Context.MODE_PRIVATE);
 
-    //Don't forget to uncomment this later "onResume"
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("city", City);
+        editor.putString("willaya", Willay);
+        editor.putString("country", Country);
+        editor.apply();
 
-/*
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        Intent intent=getIntent();
-        Times=getPrayerTimes(intent.getStringExtra("city"),intent.getStringExtra("country"));
     }
 
- */
+    public String getData(String Key) {
+        SharedPreferences preferences = getSharedPreferences("mFile", Context.MODE_PRIVATE);
+        String value = preferences.getString(Key, "");
+        return value;
+    }
+
+
 }
 
 
