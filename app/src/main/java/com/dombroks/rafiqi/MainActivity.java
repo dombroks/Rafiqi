@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         place.setText(getData("city") + ", " + getData("willaya") + ", " + getData("country"));
 
-        Times = getPrayerTimes("Algeria", "setif");
+        Times = getPrayerTimes(getData("country"), getData("city"));
 
         tassbih.setOnClickListener(new View.OnClickListener() {
             @Override
