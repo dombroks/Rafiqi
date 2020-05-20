@@ -98,7 +98,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(otherActivity);
             }
         });
-
+        quran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                otherActivity = new Intent(MainActivity.this, Quran.class);
+                startActivity(otherActivity);
+            }
+        });
 
     }
 
