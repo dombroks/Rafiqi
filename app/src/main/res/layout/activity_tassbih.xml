@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="122dp"
-            android:layout_marginBottom="11dp"
+            android:layout_marginBottom="16dp"
             android:layout_toEndOf="@+id/left"
             android:fontFamily="@font/oswald_regular"
             android:gravity="center|center_horizontal"
