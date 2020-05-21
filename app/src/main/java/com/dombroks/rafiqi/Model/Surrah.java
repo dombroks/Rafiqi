@@ -4,13 +4,14 @@ public class Surrah {
     private int id;
     private String nameAr;
     private String nameEng;
-    private String ayaNumber;
+    private int ayaNumber;
     private String type;
 
     public Surrah() {
     }
 
-    public Surrah(String nameAr, String nameEng, String ayaNumber, String type) {
+    public Surrah(int id, String nameAr, String nameEng, int ayaNumber, String type) {
+        this.id = id;
         this.nameAr = nameAr;
         this.nameEng = nameEng;
         this.ayaNumber = ayaNumber;
@@ -41,11 +42,11 @@ public class Surrah {
         this.nameEng = nameEng;
     }
 
-    public String getAyaNumber() {
+    public int getAyaNumber() {
         return ayaNumber;
     }
 
-    public void setAyaNumber(String ayaNumber) {
+    public void setAyaNumber(int ayaNumber) {
         this.ayaNumber = ayaNumber;
     }
 

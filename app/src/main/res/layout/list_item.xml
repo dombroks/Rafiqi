@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:padding="8dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="1dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="2dp"
+        android:elevation="5dp"
+        android:layout_margin="2dp">
+
+        <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,24 +23,26 @@
             android:id="@+id/SurrahID"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="19dp"
             android:background="@color/colorPrimary"
             android:fontFamily="@font/amiri_bold"
-            android:gravity="center"
+            android:gravity="top|center"
             android:text="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/SurrahNameEng"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="14dp"
             android:fontFamily="@font/oswald_regular"
             android:text="Al-Fattiha"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -44,49 +54,61 @@
         <TextView
             android:id="@+id/SurrahNameAr"
             android:layout_width="wrap_content"
-            android:layout_height="33dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="72dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="67dp"
             android:fontFamily="@font/amiri_bold"
             android:text="سورة الفاتحة"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/SurrahType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="72dp"
-            android:fontFamily="@font/amiri_regular"
-            android:text="مكية-"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SurrahNameAr" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/SurrahNameAr"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-20dp"
+                android:layout_marginEnd="66dp"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/amiri"
-            android:text=" عدد الآيات:"
-            app:layout_constraintEnd_toStartOf="@+id/SurrahType"
-            app:layout_constraintTop_toBottomOf="@+id/SurrahNameAr" />
-
-        <TextView
-            android:id="@+id/ayatNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
-            android:fontFamily="@font/amiri"
-            android:text="7"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView6" />
+                <TextView
+                    android:id="@+id/ayatNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/amiri"
+                    android:text="7"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/amiri_bold"
+                    android:text=" عدد الآيات:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black" />
 
+                <TextView
+                    android:id="@+id/SurrahType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/amiri_bold"
+                    android:text="مكية-"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
 </androidx.cardview.widget.CardView>
+</LinearLayout>
+
