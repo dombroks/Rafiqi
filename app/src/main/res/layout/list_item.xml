@@ -17,7 +17,7 @@
 
         <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/SurrahID"
@@ -29,11 +29,11 @@
             android:layout_marginEnd="19dp"
             android:background="@color/colorPrimary"
             android:fontFamily="@font/amiri_bold"
-            android:gravity="top|center"
+            android:gravity="center"
             android:text="1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/SurrahNameEng"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="1dp"
             android:layout_marginEnd="67dp"
             android:fontFamily="@font/amiri_bold"
             android:text="سورة الفاتحة"
@@ -99,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/amiri_bold"
-                    android:text="مكية-"
+                    android:text="مكية،"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
