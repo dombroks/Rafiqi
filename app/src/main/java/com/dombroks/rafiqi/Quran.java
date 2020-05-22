@@ -5,9 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.dombroks.rafiqi.Adapter.rvAdapter;
 import com.dombroks.rafiqi.Model.Surrah;
@@ -21,6 +23,9 @@ public class Quran extends AppCompatActivity {
     private RecyclerView recyclerView;
     private rvAdapter adapter;
     private List<Surrah> surrahList = new ArrayList<>();
+    private DatabaseHelper mDBHelper;
+    private SQLiteDatabase mDb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +34,11 @@ public class Quran extends AppCompatActivity {
         goBack = findViewById(R.id.left);
         recyclerView = findViewById(R.id.rv);
 
-        for (int i = 0; i < 10; i++) {
-            Surrah surrah = new Surrah(1, "سورة الفاتحة", "Al-Fattiha", 7, "مكية");
-            surrahList.add(surrah);
+        mDBHelper = new DatabaseHelper(this, null, null, 5);
+        // String Sura = mDBHelper.laodQuery();
 
-        }
-        adapter = new rvAdapter(surrahList);
+
+        adapter = new rvAdapter(mDBHelper.getSurrahs());
 
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);

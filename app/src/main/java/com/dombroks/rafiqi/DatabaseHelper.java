@@ -6,11 +6,15 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.dombroks.rafiqi.Model.Surrah;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DB_VERSION = 5;
@@ -122,5 +126,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
 
     }
+
+    public String getData(int indexx, String query) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String result = "";
+        try {
+            createDB();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Cursor idC = db.rawQuery(query, null);
+        while (idC.moveToNext()) {
+            result += idC.getString(0);
+
+        }
+        return result;
+    }
+
+    public List<Surrah> getSurrahs() {
+        List<Surrah> surrahs = new ArrayList<>();
+        for (int i = 1; i < 115; i++) {
+            int surrahId = Integer.parseInt(getData(i, "select id from chapters where id=" + i));
+            String surrahNameAr = getData(i, "select name_ar from chapters where id=" + i);
+            String surrahNameEng = getData(i, "select name_pron_en from chapters where id=" + i);
+            String surrahClass = getData(i, "select class from chapters where id=" + i);
+            int surrahAyatNumber = Integer.parseInt(getData(i, "select verses_number from chapters where id=" + i));
+            surrahs.add(new Surrah(surrahId, surrahNameAr, surrahNameEng, surrahAyatNumber, surrahClass));
+        }
+        return surrahs;
+    }
+
 
 }
