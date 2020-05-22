@@ -101,32 +101,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-
-    public String laodQuery() {
-        try {
-            createDB();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        String result = "";
-        SQLiteOpenHelper dbHelper;
-        SQLiteDatabase db = this.getWritableDatabase();
-        int SuraIndex = 1;
-
-        Cursor c = db.rawQuery("select content from chapters where id=1 ;", null);
-
-        while (c.moveToNext()) {
-
-            result += c.getString(0);
-            SuraIndex++;
-        }
-        c.close();
-        db.close();
-        return result;
-
-    }
-
     public String getData(int indexx, String query) {
         SQLiteDatabase db = this.getWritableDatabase();
         String result = "";
@@ -154,6 +128,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             surrahs.add(new Surrah(surrahId, surrahNameAr, surrahNameEng, surrahAyatNumber, surrahClass));
         }
         return surrahs;
+    }
+
+    public String getContentById(String id) {
+        String content = "";
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            createDB();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Cursor c = db.rawQuery("select content from chapters where id=" + id, null);
+        while (c.moveToNext()) {
+            content += c.getString(0);
+        }
+        return content;
     }
 
 

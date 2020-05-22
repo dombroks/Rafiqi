@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/NoAppBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Quran"></activity>
+        <activity android:name=".Quran2"></activity>
+        <activity android:name=".Quran" />
         <activity android:name=".chahada" />
         <activity android:name=".tassbih" />
         <activity android:name=".SplashScreen">

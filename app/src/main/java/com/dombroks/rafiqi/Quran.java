@@ -24,7 +24,7 @@ public class Quran extends AppCompatActivity {
     private rvAdapter adapter;
     private List<Surrah> surrahList = new ArrayList<>();
     private DatabaseHelper mDBHelper;
-    private SQLiteDatabase mDb;
+
 
 
     @Override
@@ -35,7 +35,6 @@ public class Quran extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv);
 
         mDBHelper = new DatabaseHelper(this, null, null, 5);
-        // String Sura = mDBHelper.laodQuery();
 
 
         adapter = new rvAdapter(mDBHelper.getSurrahs());
@@ -43,6 +42,16 @@ public class Quran extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter.setOnItemClickListener(new rvAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(Surrah surrah) {
+                Intent intent = new Intent(Quran.this, Quran2.class);
+                intent.putExtra("item", String.valueOf(surrah.getId()));
+                startActivity(intent);
+
+            }
+        });
 
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override

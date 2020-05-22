@@ -17,6 +17,7 @@ import java.util.List;
 
 public class rvAdapter extends RecyclerView.Adapter<rvAdapter.MyView> {
     private List<Surrah> surrahs = new ArrayList<>();
+    private onItemClickListener listener;
 
     @NonNull
     @Override
@@ -57,6 +58,24 @@ public class rvAdapter extends RecyclerView.Adapter<rvAdapter.MyView> {
             this.surrahEng = itemView.findViewById(R.id.SurrahNameEng);
             this.surrahId = itemView.findViewById(R.id.SurrahID);
             this.surrahType = itemView.findViewById(R.id.SurrahType);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(surrahs.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    public interface onItemClickListener {
+        void onItemClick(Surrah surrah);
+    }
+
+    public void setOnItemClickListener(onItemClickListener listener) {
+        this.listener = listener;
     }
 }
