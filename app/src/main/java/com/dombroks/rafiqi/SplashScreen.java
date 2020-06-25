@@ -1,12 +1,14 @@
 package com.dombroks.rafiqi;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -14,6 +16,8 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.location.LocationProvider;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
@@ -77,8 +81,24 @@ public class SplashScreen extends AppCompatActivity {
         if (requestCode == PERMISSION_ID) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Granted. Start getting the location information
-            }
+            } else
+                finishAffinity();
         }
+    }
+
+    private void explainPermissionToUser() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Permission");
+        alertDialog.setMessage("Hi, we need the location permission to get prayer times by your geographic place");
+        alertDialog.setCancelable(false);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        requestPermissions();
+                    }
+                });
+        alertDialog.show();
     }
 
     private boolean isLocationEnabled() {
@@ -132,7 +152,8 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         } else {
-            requestPermissions();
+            explainPermissionToUser();
+
         }
     }
 
@@ -166,19 +187,25 @@ public class SplashScreen extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            String cityName = addressList.get(0).getLocality();
-            String wilayaName = addressList.get(0).getAdminArea();
-            String country = addressList.get(0).getCountryName();
+            if (addressList != null) {
+                String cityName = addressList.get(0).getLocality();
+                String wilayaName = addressList.get(0).getAdminArea();
+                String country = addressList.get(0).getCountryName();
 
-            wilayaName = wilayaName.replace("Province", "");
 
-            Intent intent = new Intent(SplashScreen.this, MainActivity.class)
-                    .putExtra("city", cityName)
-                    .putExtra("wilaya", wilayaName)
-                    .putExtra("country", country);
+                wilayaName = wilayaName.replace("Province", "");
 
-            startActivity(intent);
+                Intent intent = new Intent(SplashScreen.this, MainActivity.class)
+                        .putExtra("city", cityName)
+                        .putExtra("wilaya", wilayaName)
+                        .putExtra("country", country);
 
+                startActivity(intent);
+
+            } else {
+                Log.e(getPackageName().getClass().getSimpleName(), "onLocationResult: " + "No data");
+                getLastLocation();
+            }
 
         }
     };
