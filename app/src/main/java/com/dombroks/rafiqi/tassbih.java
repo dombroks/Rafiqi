@@ -13,7 +13,7 @@ public class tassbih extends AppCompatActivity {
     private LinearLayout plusLinearLayout;
     private int index;
     private TextView counter;
-    private ImageView goBack;
+    private ImageView goBack, refresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class tassbih extends AppCompatActivity {
 
         plusLinearLayout = findViewById(R.id.linearLayout);
         goBack = findViewById(R.id.left);
+        refresh = findViewById(R.id.refresh);
         counter = findViewById(R.id.index);
         index = 0;
         counter.setText(String.valueOf(index));
@@ -47,7 +48,13 @@ public class tassbih extends AppCompatActivity {
                 }
             }
         });
-
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                index = 0;
+                counter.setText("0");
+            }
+        });
 
 
     }
