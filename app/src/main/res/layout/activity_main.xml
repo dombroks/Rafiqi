@@ -33,14 +33,14 @@
 
             <ImageView
                 android:id="@+id/settings"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="right|end"
                 android:layout_marginTop="9dp"
                 android:clickable="true"
-                android:src="@drawable/symboll" />
+                android:src="@drawable/ic_setting" />
         </RelativeLayout>
 
         <TextView
@@ -111,10 +111,10 @@
             android:paddingLeft="30dp">
 
             <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
                 android:layout_gravity="center"
-                android:src="@drawable/place" />
+                android:src="@drawable/ic_location" />
 
             <TextView
                 android:id="@+id/place"
@@ -154,7 +154,7 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/custom_shape2"
                 android:clickable="true"
-                android:padding="10dp"
+                android:padding="11dp"
                 android:src="@drawable/religious" />
 
             <ImageView
@@ -164,8 +164,8 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/custom_shape2"
                 android:clickable="true"
-                android:padding="10dp"
-                android:src="@drawable/sallat" />
+                android:padding="11dp"
+                android:src="@drawable/ic_sajada" />
 
             <ImageView
                 android:id="@+id/qubla"
@@ -175,7 +175,7 @@
                 android:background="@drawable/custom_shape2"
                 android:clickable="true"
                 android:padding="10dp"
-                android:src="@drawable/qublaa" />
+                android:src="@drawable/ic_kaaba" />
 
             <ImageView
                 android:id="@+id/dua"
@@ -185,7 +185,7 @@
                 android:background="@drawable/custom_shape2"
                 android:clickable="true"
                 android:padding="10dp"
-                android:src="@drawable/dua" />
+                android:src="@drawable/ic_douaa" />
 
         </LinearLayout>
 
@@ -207,7 +207,7 @@
                 android:background="@drawable/custom_shape2"
                 android:clickable="true"
                 android:padding="10dp"
-                android:src="@drawable/tasbih" />
+                android:src="@drawable/ic_sibha" />
 
             <ImageView
                 android:id="@+id/calendar"
@@ -226,8 +226,8 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/custom_shape2"
                 android:clickable="true"
-                android:padding="5dp"
-                android:src="@drawable/sahada" />
+                android:padding="10dp"
+                android:src="@drawable/ic_islam" />
 
             <ImageView
                 android:id="@+id/asmaa"
