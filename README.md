@@ -8,9 +8,9 @@
 |Home|Tassbih|Shahada|
 
 
-| <img src="4" width="200"/> | <img src="screenshots/05.png" width="200"/> | <img src="screenshots/06.png" width="200"/> | 
+| <img src="4" width="200"/> | <img src="" width="200"/> | <img src="s" width="200"/> | 
 |:---:|:---:|:---:|
-|Language|Navigation|Side Menu|
+|Home|Empty|Empty|
 
 
 ## Project Description
