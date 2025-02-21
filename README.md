@@ -8,7 +8,7 @@
 |Home|Tassbih|Shahada|
 
 
-| <img src="4" width="200"/> | <img src="" width="200"/> | <img src="s" width="200"/> | 
+| <img src="4" width="200"/> |  | | 
 |:---:|:---:|:---:|
 |Home|Empty|Empty|
 
