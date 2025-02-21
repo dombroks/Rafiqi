@@ -1,5 +1,17 @@
 # Rafiqi
-![](1) ![](2) ![](3) ![](4)
+
+
+## Screenshots
+
+| <img src="1" width="200"/> | <img src="2" width="200"/> | <img src="3" width="200"/> | 
+|:---:|:---:|:---:|
+|Home|Tassbih|Shahada|
+
+
+| <img src="4" width="200"/> | <img src="screenshots/05.png" width="200"/> | <img src="screenshots/06.png" width="200"/> | 
+|:---:|:---:|:---:|
+|Language|Navigation|Side Menu|
+
 
 ## Project Description
 
